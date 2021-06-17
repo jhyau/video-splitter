@@ -8,6 +8,7 @@ import os
 import shlex
 from optparse import OptionParser
 
+from tqdm import tqdm
 
 def split_by_manifest(filename, manifest, vcodec="copy", acodec="copy",
                       extra="", **kwargs):
@@ -102,7 +103,7 @@ def split_by_seconds(filename, split_length, vcodec="copy", acodec="copy",
         fileext = filename.split(".")[-1]
     except IndexError as e:
         raise IndexError("No . in filename. Error: " + str(e))
-    for n in range(0, split_count):
+    for n in tqdm(range(0, split_count)):
         split_args = []
         if n == 0:
             split_start = 0
