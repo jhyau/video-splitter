@@ -10,6 +10,10 @@ Run `python ffmpeg-split.py -h` to see the options. Here are few samples of how 
 
 This splits `big_video_file.mp4` into chunks, and the size of chunk is 10 seconds. Each chunk will be suffixed with numeric index, for example `big_video_file-0.mp4`, `big_video_file-1.mp4`, etc.
 
+Note: When using the above command, the videos chunks might have an issue where the first half of the video only has audio and no video, and only the second half has video. To fix this, run:
+
+`python ffmpeg-split.py -f big_video_file.mp4 -v libx264 -s 10`
+
 ## Spliting video into equal chunks with some extra options
 
 `python ffmpeg-split.py -f input.mp4 -s 600 -v libx264 -e '-vf "scale=320:240" -threads 8'`
