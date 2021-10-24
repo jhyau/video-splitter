@@ -50,13 +50,19 @@ def split_by_manifest(filename, manifest, vcodec="copy", acodec="copy",
                 split_start = video_config["start_time"]
                 split_length = video_config.get("end_time", None)
                 if not split_length:
+                    print("Using video length...")
                     split_length = video_config["length"]
                 filebase = video_config["rename_to"]
                 if fileext in filebase:
                     filebase = ".".join(filebase.split(".")[:-1])
 
-                split_args += ["-ss", str(split_start), "-t",
-                    str(split_length), filebase + "." + fileext]
+                # Use length/duration to cut video
+                if not video_config.get("end_time", None):
+                    split_args += ["-ss", str(split_start), "-t",
+                        str(split_length), filebase + "." + fileext]
+                else: # Use time position to cut video
+                    split_args += ["-ss", str(split_start), "-to",
+                        str(split_length), filebase + "." + fileext]
                 print("########################################################")
                 print("About to run: "+" ".join(split_cmd+split_args))
                 print("########################################################")
