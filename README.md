@@ -74,6 +74,14 @@ start_time,length,rename_to
 
 NOTE: When using manifest.json to split the video, it's been modified so that when the end_time is provided, that is the TIME POSITION for the video to be split, and not the LENGTH of time for the clip to be split (e.g. if end_time is "00:09:00") it would now cut at the 9th minute of the clip instead of cutting at 9 minutes after the start_time.
 
+Example usig end_time:
+
+```CSV
+
+start_time,end_time,rename_to
+00:00:00,00:09:00,video-name
+```
+
 ## Additional Arguments
 
 * -v or --vcodec        ffmpeg video codec to be used.
