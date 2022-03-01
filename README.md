@@ -72,7 +72,7 @@ start_time,length,rename_to
 * rename_to       - name of the video clip to be saved
 * end_time        - end time of the video
 
-NOTE: When using manifest.json to split the video, it's been modified so that when the end_time is provided, that is the TIME POSITION for the video to be split, and not the LENGTH of time for the clip to be split (e.g. if end_time is "00:09:00") it would now cut at the 9th minute of the clip instead of cutting at 9 minutes after the start_time.
+NOTE: When using manifest.json to split the video, it's been modified so that when the end_time is provided, that is the TIME POSITION for the video to be split, and not the LENGTH of time for the clip to be split (e.g. if end_time is "00:09:00") it would now cut at the 9th minute of the clip instead of cutting at 9 minutes after the start_time. Correspondingly, probably want to provide the actual time position for start_time to match with end_time, not the seconds into the video
 
 manifest.json example using end_time:
 
@@ -80,13 +80,13 @@ manifest.json example using end_time:
 
 [
     {
-        "start_time": 00:00:00,
-        "end_time": 00:09:00,
+        "start_time": "00:00:00",
+        "end_time": "00:09:00",
         "rename_to": "video1"
     },
     {
-        "start_time": 00:09:00,
-        "end_time": 00:15:21,
+        "start_time": "00:09:00",
+        "end_time": "00:15:21",
         "rename_to": "video2.mp4"
     }
 ]
